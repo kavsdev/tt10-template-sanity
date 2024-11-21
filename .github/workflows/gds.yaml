@@ -12,6 +12,15 @@ jobs:
         uses: actions/checkout@v4
         with:
           submodules: recursive
+      - name: Setup JDK
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: 17
+          cache: sbt
+      - uses: sbt/setup-sbt@v1
+      - name: generate Verilog
+        run: sbt run
 
       - name: Build GDS
         uses: TinyTapeout/tt-gds-action@tt10
