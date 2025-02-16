@@ -45,14 +45,6 @@ module tt_um_vga_box_v1(
     .vpos(pix_y)
   );
 
-  // localparam FN =0 ;
-  // reg [4:0]frameCount;
-
-  // always @ (posedge vsync) begin
-  //   if(reset || frameCount==FN) frameCount <= 0;
-  //   else frameCount <= frameCount +1; 
-  // end
-
   localparam sq_size = 200;
   reg [9:0] sq_xpos, sq_ypos;
   reg sq_dx,sq_dy; //right = 0, down =0
@@ -65,9 +57,8 @@ module tt_um_vga_box_v1(
       sq_ypos <= 0;
       sq_dx <= 0;
       sq_dy <= 0;
-    end
-
-
+    end else begin
+      
     case (sq_dx)
         0: begin
             if(sq_xpos+sq_size+sq_speed >=VGA_WIDTH-1) begin
@@ -97,6 +88,7 @@ module tt_um_vga_box_v1(
             end else sq_ypos <= sq_ypos -sq_speed;
         end 
     endcase
+    end
   end
 
 wire square = (pix_x>=sq_xpos) && (pix_x < sq_xpos+sq_size) && (pix_y>=sq_ypos) && (pix_y < sq_ypos+sq_size);
