@@ -64,7 +64,15 @@ module tt_um_vga_box_v1(
   wire [5:0]sq_speed =5;
 
 
-  always @ (posedge vsync) begin
+  always @ (posedge vsync or posedge reset) begin
+    if(reset) begin
+      sq_xpos <= 0;
+      sq_ypos <= 0;
+      sq_dx <= 0;
+      sq_dy <= 0;
+    end
+
+
     case (sq_dx)
         0: begin
             if(sq_xpos+sq_size+sq_speed >=VGA_WIDTH-1) begin
@@ -98,12 +106,6 @@ module tt_um_vga_box_v1(
 
 wire square = (pix_x>=sq_xpos) && (pix_x < sq_xpos+sq_size) && (pix_y>=sq_ypos) && (pix_y < sq_ypos+sq_size);
 
-always @ (posedge reset) begin
-  sq_dx <=0;
-  sq_dy <=0;
-  sq_xpos <=0;
-  sq_ypos <=0;
-end
 
   assign R = video_active ? (square ? 2'b11 : 2'b00) : 2'b00;
   assign G = video_active ? (square ? 2'b11 : 2'b00) : 2'b00;
