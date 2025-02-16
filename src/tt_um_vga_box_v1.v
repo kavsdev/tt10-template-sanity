@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2024 Uri Shaked
- * SPDX-License-Identifier: Apache-2.0
- */
-
 `default_nettype none
 
 module tt_um_vga_box_v1(
@@ -61,7 +56,7 @@ module tt_um_vga_box_v1(
   localparam sq_size = 200;
   reg [9:0] sq_xpos, sq_ypos;
   reg sq_dx,sq_dy; //right = 0, down =0
-  wire [5:0]sq_speed =5;
+  wire [9:0]sq_speed =5;
 
 
   always @ (posedge vsync or posedge reset) begin
