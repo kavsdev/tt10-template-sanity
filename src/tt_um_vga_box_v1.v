@@ -50,13 +50,13 @@ module tt_um_vga_box_v1(
     .vpos(pix_y)
   );
 
-  localparam FN =0 ;
-  reg [4:0]frameCount;
+  // localparam FN =0 ;
+  // reg [4:0]frameCount;
 
-  always @ (posedge vsync) begin
-    if(reset || frameCount==FN) frameCount <= 0;
-    else frameCount <= frameCount +1; 
-  end
+  // always @ (posedge vsync) begin
+  //   if(reset || frameCount==FN) frameCount <= 0;
+  //   else frameCount <= frameCount +1; 
+  // end
 
   localparam sq_size = 200;
   reg [9:0] sq_xpos, sq_ypos;
